@@ -26,7 +26,7 @@ A project to create a **wearable trackpad** and button-based controller that all
 | **Synaptics Touchpad**  | Extracted from an **HP/Lenovo laptop**          |
 | **Arduino MKR**         | Reads touchpad gestures                         |
 | **ESP32 (WROOM-32E)**  | Sends Bluetooth commands to the iPhone          |
-| **Lithium Battery + TP4056** | Powers the system                         |
+| **Lithium Battery** | Powers the system                         |
 | **3D Printed Case**     | Holds the components                            |
 | **Tactile Buttons (x4)** | Used for quick-access iPhone functions         |
 
@@ -36,28 +36,18 @@ A project to create a **wearable trackpad** and button-based controller that all
 
 ### 3.1 Wiring
 
-| Component  | Connected to |
-|------------|-------------|
-| **Touchpad Data (PS2)** | **Arduino MKR** |
-| **Gesture Output (Digital Pins)** | **ESP32** |
-| **ESP32 (Bluetooth Controller)** | **iPhone (BLE Keyboard)** |
-| **Buttons (4)** | **ESP32 GPIO Pins** |
+| Component  | Connected to | Use |
+|------------|-------------|------------|
+| **Touchpad (PS/2) 5V, GND, Clock and Data, Pins** | **Arduino MKR 5V, GND and Pins 4 and 5** | **PS/2 Communication** |
+| **Arduino MKR VCC, GND and 5 Digital Pins** | **ESP32 VCC, GND and 5 GPIO Pins** | **5-bit Gesture Communication** |
+| **Buttons (4)** | **ESP32 GND and 4 GPIO Pins** | **Button Communication**
 
+Example for TM-1368 Synaptics TouchPad:
 - **PS/2 Touchpad Wiring**
-  - **Clock (T3) → Arduino MKR Pin 4**
-  - **Data (T5) → Arduino MKR Pin 5**
+  - **Clock (T13) → Arduino MKR Pin 4**
+  - **Data (T12) → Arduino MKR Pin 5**
   - **VCC (T20) → 5V**
-  - **GND (T1) → GND**
-
-- **Gesture Communication**
-  - **Arduino MKR Digital Pins → ESP32 Digital Pins**
-  - Encodes **5-bit gesture commands** (e.g., swipes, clicks)
-
-- **Button Mapping (ESP32)**
-  - **Home Button → GPIO 26**
-  - **App Switcher → GPIO 27**
-  - **Control Center → GPIO 32**
-  - **Rotor → GPIO 33**
+  - **GND → GND**
 
 ---
 
@@ -83,6 +73,8 @@ A project to create a **wearable trackpad** and button-based controller that all
 | 1-Finger Swipe Down  | **Ctrl + Alt + Down Arrow** |
 | 2-Finger Tap        | **Ctrl + Alt + Space (Click)** |
 
+In the Settings app on your iPhone, go to **Accessibility > VoiceOver > Commands > Keyboard Shortcuts** (for VoiceOver commands specifically) or to **Accessibility > Keyboards & Typing > Full Keyboard Access > Commands** to customize your gesture and button mapping.
+
 ---
 
 ## 5. Installation & Setup
@@ -99,9 +91,9 @@ A project to create a **wearable trackpad** and button-based controller that all
 2. **Flash the ESP32** with the `ESP32_BLE_Keyboard.ino` sketch.
 
 ### 5.3 Pairing with iPhone
-1. Enable **VoiceOver** on iPhone.
-2. Go to **Settings > Bluetooth**.
-3. Pair with **ESP32 Keyboard**.
+1. Enable **VoiceOver** on iPhone (**Settings > Accessibility > Voiceover**).
+2. Enable **Full Keyboard Access** on iPhone (**Settings > Accessibility > Keyboards & Typing > Full Keyboard Access**)
+4. Pair iPhone with **ESP32 Keyboard** (**Settings > Bluetooth**).
 
 ---
 
@@ -118,32 +110,13 @@ A project to create a **wearable trackpad** and button-based controller that all
 
 ---
 
-## 7. Troubleshooting
-
-### 7.1 Common Issues
-
-| Issue | Solution |
-|-------|----------|
-| Touchpad not responding | Check PS/2 connections, ensure Absolute Mode is enabled |
-| ESP32 not detected by iPhone | Reflash firmware, check `BleKeyboard.begin()` |
-| Buttons not working | Ensure pull-up resistors are enabled |
-
----
-
-## 8. Future Improvements
+## 7. Future Improvements
 - **Better latency testing** for real-time feedback.  
 - **Gesture customization via app** for user-specific needs.  
 - **More durable 3D printed enclosure** for everyday use.  
 
 ---
 
-## 9. Conclusion
+## 8. Conclusion
 
 The **TouchBelt project** demonstrates that it is possible to create **an alternative smartphone input method** for blind users using **recycled laptop touchpads, an Arduino, and an ESP32 BLE keyboard emulator**. This device allows **hands-free navigation**, making **on-the-go smartphone use** much more accessible.
-
----
-
-## 10. License
-
-This project is released under the **MIT License**. See [LICENSE](LICENSE) for details.
-
