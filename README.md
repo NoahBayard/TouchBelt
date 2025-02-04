@@ -38,7 +38,7 @@ A project to create a **wearable trackpad** and button-based controller that all
 
 | Component  | Connected to | Use |
 |------------|-------------|------------|
-| **Touchpad (PS/2) 5V, GND, Clock and Data, Pins** | **Arduino MKR 5V, GND and Pins 4 and 5** | **PS/2 Communication** |
+| **Touchpad (PS/2) 5V, GND, Clock and Data Pins** | **Arduino MKR 5V, GND and Pins 4 and 5** | **PS/2 Communication** |
 | **Arduino MKR VCC, GND and 5 Digital Pins** | **ESP32 VCC, GND and 5 GPIO Pins** | **5-bit Gesture Communication** |
 | **Buttons (4)** | **ESP32 GND and 4 GPIO Pins** | **Button Communication**
 
