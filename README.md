@@ -84,7 +84,7 @@ In the Settings app on your iPhone, go to **Accessibility > VoiceOver > Commands
 2. Install **ESP32 Board Package** (`https://dl.espressif.com/dl/package_esp32_index.json`).
 3. Install the following libraries:
    - **PS2Mouse** (For reading touchpad): https://github.com/rucek/arduino-ps2-mouse.git
-   - **BleKeyboard** (For Bluetooth control): https://github.com/T-vK/ESP32-BLE-Keyboard.git. Add '''const uint8_t KEY_SPACE = 0x20;''' to BleKeyboard.h to use the Space key.
+   - **BleKeyboard** (For Bluetooth control): https://github.com/T-vK/ESP32-BLE-Keyboard.git. Add `const uint8_t KEY_SPACE = 0x20;` to BleKeyboard.h to use the Space key.
 
 ### 5.2 Flashing the Code
 1. **Flash the Arduino MKR** with the `Touchpad_Reader.ino` sketch.
